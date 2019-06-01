@@ -1,4 +1,4 @@
-package sorting_searching;
+package Searching;
 
 public class JumpSearch {
     private int[] array;

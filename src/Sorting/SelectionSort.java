@@ -5,6 +5,7 @@ public class SelectionSort {
     public SelectionSort(int[] array) {
         this.array=array;
     }
+
     public int[] sortAsscending(){
         int n = array.length;
         for (int i = 0; i < n-1; i++)

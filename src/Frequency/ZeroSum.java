@@ -12,19 +12,20 @@ public class ZeroSum {
     public int[] check(){
         int i = 0, j=array.length-1;
         while (i<=j){
-            if ( (array[i]+array[j]) == 0 ){
+            int sum = array[i]+array[j];
+            if ( sum == 0 ){
                 int[] ret = {array[i],array[j]};
                 return ret;
-            }else if (Math.abs(array[i]) > Math.abs(array[j]))
+            }else if (sum < 0)
                 i++;
-            else if (Math.abs(array[i]) < Math.abs(array[j]))
+            else
                 j--;
         }
         return null;
     }
     //driver code
     public static void main(String[] args) {
-        int[] array = {12,-6,-3,-2,-1,0,1,3,4,6,23,};
+        int[] array = {-12,-6,-3,-2,-1,0,1,3,4,6,23};
         ZeroSum zeroSum = new ZeroSum(array);
         int[] result = zeroSum.check();
         if (result!=null)

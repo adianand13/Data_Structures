@@ -12,7 +12,7 @@ public class ZeroSum {
     public int[] check(){
         int i = 0, j=array.length-1;
         while (i<=j){
-            if (Math.abs(array[i])==Math.abs(array[j])){
+            if ( (array[i]+array[j]) == 0 ){
                 int[] ret = {array[i],array[j]};
                 return ret;
             }else if (Math.abs(array[i]) > Math.abs(array[j]))

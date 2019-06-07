@@ -11,6 +11,8 @@ public class UniqueValues {
 
     public int count(){
         int frequency = 0, previous=0;
+        if (Array.length==0)
+            return 0;
         for (int i : Array)
             if (i != previous) {
                 frequency++;

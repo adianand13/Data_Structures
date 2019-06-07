@@ -15,12 +15,10 @@ public class ZeroSum {
             if (Math.abs(array[i])==Math.abs(array[j])){
                 int[] ret = {array[i],array[j]};
                 return ret;
-            }else if (Math.abs(array[i]) > Math.abs(array[j])){
+            }else if (Math.abs(array[i]) > Math.abs(array[j]))
                 i++;
-            }
-            else if (Math.abs(array[i]) < Math.abs(array[j])){
+            else if (Math.abs(array[i]) < Math.abs(array[j]))
                 j--;
-            }
         }
         return null;
     }

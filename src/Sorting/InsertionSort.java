@@ -10,13 +10,10 @@ public class InsertionSort {
     }
 
     public int[] sortAsscending(){
-        int i = 1;
-        while (i<N){
+        for (int i = 1,j; i < N; i++) {
             int value = array[i];
-            int j = i-1;
-            while (j>=0 && array[j]>value){
+            for (j = i-1 ; j >= 0 && array[j]>value ; j--) {
                 array[j+1] = array[j];
-                j = j-1;
             }
             array[j+1] = value;
         }
@@ -24,16 +21,24 @@ public class InsertionSort {
     }
 
     public int[] sortDesscending(){
-        int i = 1;
-        while (i<N){
+        for (int i = 1,j; i < N; i++) {
             int value = array[i];
-            int j = i-1;
-            while (j>=0 && array[j]<value){
+            for (j = i-1 ; j >= 0 && array[j]<value ; j--) {
                 array[j+1] = array[j];
-                j = j-1;
             }
             array[j+1] = value;
         }
         return array;
+    }
+
+    //driver code
+    public static void main(String[] args) {
+        int[] array = {1,2,9,6,76,20};
+        array = new InsertionSort(array).sortDesscending();
+        for (int i :
+                array) {
+            System.out.print(i+" ");
+        }
+
     }
 }

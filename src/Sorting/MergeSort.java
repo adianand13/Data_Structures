@@ -1,74 +1,61 @@
 package Sorting;
+import java.util.Arrays;
 
 public class MergeSort {
-    void merge(int arr[], int beg, int mid, int end)
-    {
 
-        int l = mid - beg + 1;
-        int r = end - mid;
+    public int[] sort(int[] arr){
+        if (arr.length <= 1)
+            return arr;
 
-        int LeftArray[] = new int [l];
-        int RightArray[] = new int [r];
+        int mid = arr.length/2;
 
-        for (int i=0; i<l; ++i)
-            LeftArray[i] = arr[beg + i];
+        int[] left = new int[mid];
+        System.arraycopy(arr, 0, left, 0, mid);
 
-        for (int j=0; j<r; ++j)
-            RightArray[j] = arr[mid + 1+ j];
+        int[] right = new int[arr.length-mid];
+        System.arraycopy(arr, mid, right, 0, arr.length-mid);
 
 
-        int i = 0, j = 0;
-        int k = beg;
-        while (i<l&&j<r)
-        {
-            if (LeftArray[i] <= RightArray[j])
-            {
-                arr[k] = LeftArray[i];
-                i++;
-            }
-            else
-            {
-                arr[k] = RightArray[j];
+        left = sort(left);
+        right = sort(right);
+
+
+        return merge(left, right);
+
+    }
+
+    private int[] merge(int[] a1, int[] a2){
+        int i = 0,j = 0, n1 = a1.length, n2 = a2.length;
+        //{1,10,50} {2,14,99,100}
+        int[] merged = new int[n1+n2];
+        while(i < n1 || j < n2){
+            if (i < n1){
+                if (j < n2){
+                    if (a1[i]<a2[j]){
+                        merged[i+j] = a1[i];
+                        i++;
+                    }else {
+                        merged[i+j] = a2[j];
+                        j++;
+                    }
+                }else{
+                    merged[i+j] = a1[i];
+                    i++;
+                }
+            }else{
+                merged[i+j] = a2[j];
                 j++;
             }
-            k++;
         }
-        while (i<l)
-        {
-            arr[k] = LeftArray[i];
-            i++;
-            k++;
-        }
-
-        while (j<r)
-        {
-            arr[k] = RightArray[j];
-            j++;
-            k++;
-        }
+        return merged;
     }
 
-    void sort(int arr[], int beg, int end)
-    {
-        if (beg<end)
-        {
-            int mid = (beg+end)/2;
-            sort(arr, beg, mid);
-            sort(arr , mid+1, end);
-            merge(arr, beg, mid, end);
-        }
-    }
 
-    public static void main(String args[])
-    {
-        int arr[] = {90,23,101,45,65,23,67,89,34,23};
-        MergeSort ob = new MergeSort();
-        ob.sort(arr, 0, arr.length-1);
-
-        System.out.println("\nSorted array");
-        for(int i =0; i<arr.length;i++)
-        {
-            System.out.println(arr[i]+"");
-        }
+    //test code
+    public static void main(String[] args) {
+        int[] array = {10,24,76,73,72,1,9};
+        System.out.println(Arrays.toString(array));
+        array = new MergeSort().sort(array);
+        System.out.println(Arrays.toString(array));
     }
 }

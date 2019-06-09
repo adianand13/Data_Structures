@@ -15,10 +15,8 @@ public class MergeSort {
         int[] right = new int[arr.length-mid];
         System.arraycopy(arr, mid, right, 0, arr.length-mid);
 
-
         left = sort(left);
         right = sort(right);
-
 
         return merge(left, right);
 

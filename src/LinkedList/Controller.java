@@ -11,27 +11,27 @@ public class Controller {
         Length = 0;
     }
 
-    public boolean isEmpty() {
-        return (Head == null);
-    }
+    public boolean isEmpty() { return (Head == null); }
+
+    public int length() { return Length; }
 
     public boolean push(int value) {
         if (Head == null) {
             Head = Tail = new Node(value);
-            Length++;
+            Length ++;
             return true;
         } else {
             Tail.setNext(new Node(value));
             Tail = Tail.getNext();
-            Length++;
+            Length ++;
             return true;
         }
     }
 
     public boolean pop() {
-        if (Head == null) {
+        if (Head == null)
             return false;
-        } else if (Head == Tail) {
+        else if (Head == Tail) {
             Head = Tail = null;
             Length = 0;
             return true;
@@ -68,6 +68,24 @@ public class Controller {
         return true;
     }
 
+    public boolean remove(int index){
+        if (index < 0 || index >= Length)
+            System.out.println("IndexOutOfBoundsException");
+        else if(index == 0)
+            return shift();
+        else if (index == Length-1)
+            return pop();
+        else {
+            Node iterator = Head.getNext();
+            for (int i = 1; i <index; i++)
+                iterator = iterator.getNext();
+            iterator.setNext(iterator.getNext().getNext());
+            Length --;
+            return true;
+        }
+        return false;
+    }
+
     //Insert a new node to start
     public boolean insertHead(int value){
         if (Head == null) return false;
@@ -88,10 +106,10 @@ public class Controller {
         }
         else {
             Node iterator = Head.getNext();
-            for (int i = 1; i <index; i++) {
+            for (int i = 1; i <index; i++)
                 iterator = iterator.getNext();
-            }
             iterator.setNext(new Node(value,iterator.getNext()));
+            Length ++;
             return true;
         }
         return false;
@@ -106,9 +124,8 @@ public class Controller {
             return Tail.getValue();
         else {
             Node iterator = Head.getNext();
-            for (int i = 1; i <= index; i++) {
+            for (int i = 1; i <= index; i++)
                 iterator = iterator.getNext();
-            }
             return iterator.getValue();
         }
         return Integer.MIN_VALUE;
@@ -125,14 +142,27 @@ public class Controller {
             Tail.setValue(value);
         else {
             Node iterator = Head.getNext();
-            for (int i = 1; i <= index; i++) {
+            for (int i = 1; i <= index; i++)
                 iterator = iterator.getNext();
-            }
             iterator.setValue(value);
         }
         return true;
     }
 
+    //to reverse the linked list
+    public void reverse(){
+        Node node = Head;
+        Head = Tail;
+        Tail = node;
+        Node prev = null, next;
+        for (int i = 0; i < Length; i++) {
+            next = node.getNext();
+            node.setNext(prev);
+            prev = node;
+            node = next;
+        }
+
+    }
     //test code
     public static void main(String[] args) {
         Controller list = new Controller();
@@ -145,6 +175,9 @@ public class Controller {
         list.push(60);
         list.push(70);
         list.traverse();
+        list.reverse();
+        list.traverse();
+        list.reverse();
         System.out.println(list.Length);
         list.pop();
         list.pop();
@@ -162,5 +195,6 @@ public class Controller {
         System.out.println(list.get(3));
         System.out.println(list.get(1));
         System.out.println(list.isEmpty());
+        list.traverse();
     }
 }

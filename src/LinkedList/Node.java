@@ -14,19 +14,13 @@ public class Node {
         Next = next;
     }
 
-    public int getValue() {
-        return Value;
-    }
+    public int getValue() { return Value; }
 
-    public Node getNext() {
-        return Next;
-    }
+    public Node getNext() { return Next; }
 
-    public void setValue(int value) {
-        Value = value;
-    }
+    public boolean hasNext(){ return (Next!=null); }
 
-    public void setNext(Node next) {
-        Next = next;
-    }
+    public void setValue(int value) { Value = value; }
+
+    public void setNext(Node next) { Next = next; }
 }

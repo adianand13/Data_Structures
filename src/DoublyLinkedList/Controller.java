@@ -4,16 +4,13 @@ public class Controller {
     private Node Head;
     private Node Tail;
     private int Length;
-
     public Controller() {
         Head = null;
         Tail = null;
         Length = 0;
     }
     public boolean isEmpty() { return (Head == null); }
-
     public int length() { return Length; }
-
     public void push(int value) {
         if (Head == null) {
             Head = Tail = new Node(value);
@@ -24,7 +21,6 @@ public class Controller {
             Length ++;
         }
     }
-
     public boolean pop() {
         if (Head == null)
             return false;

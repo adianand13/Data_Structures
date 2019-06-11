@@ -8,11 +8,13 @@ public class Node {
     public Node(int value) {
         Value = value;
         Next = null;
+        Previous = null;
     }
 
     public Node(int value, Node next) {
         Value = value;
         Next = next;
+        Previous = null;
     }
 
     public Node(int value, Node next, Node previous) {

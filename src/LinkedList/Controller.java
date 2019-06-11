@@ -15,16 +15,14 @@ public class Controller {
 
     public int length() { return Length; }
 
-    public boolean push(int value) {
+    public void push(int value) {
         if (Head == null) {
             Head = Tail = new Node(value);
             Length ++;
-            return true;
         } else {
             Tail.setNext(new Node(value));
             Tail = Tail.getNext();
             Length ++;
-            return true;
         }
     }
 
@@ -77,7 +75,7 @@ public class Controller {
             return pop();
         else {
             Node iterator = Head.getNext();
-            for (int i = 1; i <index; i++)
+            for (int i = 1; i < index-1; i++)
                 iterator = iterator.getNext();
             iterator.setNext(iterator.getNext().getNext());
             Length --;
@@ -87,26 +85,27 @@ public class Controller {
     }
 
     //Insert a new node to start
-    public boolean insertHead(int value){
-        if (Head == null) return false;
+    public void insertHead(int value){
+        if (Head == null) push(value);
         Head = new Node(value,Head);
         Length ++;
-        return true;
     }
 
     //insert at specific index
     public boolean insert(int index, int value){
         if (index < 0 || index >= Length)
             System.out.println("IndexOutOfBoundsException");
-        else if(index == 0)
-            return insertHead(value);
+        else if(index == 0){
+            insertHead(value);
+            return true;
+        }
         else if (index == Length-1){
             push(value);
             return true;
         }
         else {
             Node iterator = Head.getNext();
-            for (int i = 1; i <index; i++)
+            for (int i = 1; i < index; i++)
                 iterator = iterator.getNext();
             iterator.setNext(new Node(value,iterator.getNext()));
             Length ++;
@@ -142,7 +141,7 @@ public class Controller {
             Tail.setValue(value);
         else {
             Node iterator = Head.getNext();
-            for (int i = 1; i <= index; i++)
+            for (int i = 1; i < index; i++)
                 iterator = iterator.getNext();
             iterator.setValue(value);
         }
@@ -165,36 +164,44 @@ public class Controller {
     }
     //test code
     public static void main(String[] args) {
-        Controller list = new Controller();
-        System.out.println(list.isEmpty());
-        list.push(10);
-        list.push(20);
-        list.push(30);
-        list.push(40);
-        list.push(50);
-        list.push(60);
-        list.push(70);
-        list.traverse();
-        list.reverse();
-        list.traverse();
-        list.reverse();
-        System.out.println(list.Length);
-        list.pop();
-        list.pop();
-        list.pop();
-        list.pop();
-        list.traverse();
-        System.out.println(list.Length);
-        list.shift();
-        list.traverse();
-        System.out.println(list.Length);
-        list.insertHead(10);
-        list.traverse();
-        System.out.println(list.Length);
-        list.set(22,1);
-        System.out.println(list.get(3));
-        System.out.println(list.get(1));
-        System.out.println(list.isEmpty());
-        list.traverse();
+        Controller Dlist = new Controller();
+        System.out.println(Dlist.isEmpty());
+        System.out.println("push operation");
+        Dlist.push(10); Dlist.push(20); Dlist.push(30);Dlist.push(40);
+        Dlist.push(50); Dlist.push(60); Dlist.push(70);
+        Dlist.traverse();
+        System.out.println(Dlist.length());
+        System.out.println("pop operation");
+        Dlist.pop(); Dlist.pop(); Dlist.pop(); Dlist.pop();
+        Dlist.traverse();
+        System.out.println(Dlist.length());
+        System.out.println("Shift Operation");
+        Dlist.shift(); Dlist.traverse();
+        System.out.println("Insert head operation");
+        Dlist.insertHead(10); Dlist.traverse();
+        System.out.println(Dlist.length());
+        System.out.println("set operation");
+        Dlist.set(22, 1);
+        Dlist.traverse();
+        System.out.println("push operation");
+        Dlist.push(30); Dlist.push(40); Dlist.push(50); Dlist.push(60); Dlist.push(70);
+        Dlist.traverse();
+        System.out.println(Dlist.length());
+        System.out.println("Get operation");
+        System.out.println(Dlist.get(3));
+        System.out.println(Dlist.get(1));
+        System.out.println(Dlist.length());
+        System.out.println("remove operation");
+        Dlist.remove(3);
+        Dlist.traverse();
+        System.out.println(Dlist.length());
+        System.out.println("Insert operation");
+        Dlist.insert(5,55);
+        System.out.println(Dlist.length());
+        Dlist.traverse();
+        Dlist.reverse();
+        Dlist.traverse();
+        Dlist.reverse();
+        Dlist.traverse();
     }
 }

@@ -4,19 +4,16 @@ public class Node {
     private int Value;
     private Node Next;
     private  Node Previous;
-
     public Node(int value) {
         Value = value;
         Next = null;
         Previous = null;
     }
-
     public Node(int value, Node next) {
         Value = value;
         Next = next;
         Previous = null;
     }
-
     public Node(int value, Node next, Node previous) {
         Value = value;
         Next = next;

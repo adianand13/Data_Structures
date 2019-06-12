@@ -58,6 +58,10 @@ public class Controller {
         }
     }
 
+    public Node getHead() {
+        return Head;
+    }
+
     //Shifts head by one node
     public boolean shift(){
         if (Head == null) return false;
@@ -86,8 +90,7 @@ public class Controller {
 
     //Insert a new node to start
     public void insertHead(int value){
-        if (Head == null) push(value);
-        Head = new Node(value,Head);
+        Head = Head == null ? new Node(value,null) : new Node(value, Head);
         Length ++;
     }
 

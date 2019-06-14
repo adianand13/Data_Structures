@@ -26,4 +26,8 @@ public class Node {
     public Node getRight() { return Right; }
 
     public void setRight(Node right) { Right = right; }
+
+    public boolean hasLeft() { return Left != null; }
+
+    public boolean hasRight() { return Right != null; }
 }

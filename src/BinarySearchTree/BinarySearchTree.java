@@ -3,6 +3,7 @@ package BinarySearchTree;
 public class BinarySearchTree {
     private Node Root = null;
 
+    //function to insert single item
     public void insert(int value){
         Node iterator = Root;
         Node leaf = iterator;
@@ -29,14 +30,15 @@ public class BinarySearchTree {
             System.out.println("    : " + value);
             leaf.setLeft(new Node(value));
         }
-
     }
 
+    //function to insert value in array
     public void insertArray(int[] arr){
         for (int i : arr)
             insert(i);
     }
 
+    //function to search for an item
     public boolean find(int value){
         boolean found = false;
         if(Root ==  null) return found;
@@ -51,12 +53,5 @@ public class BinarySearchTree {
         return found;
     }
 
-    //test code
-    public static void main(String[] args) {
-        BinarySearchTree binarySearchTree = new BinarySearchTree();
-        int[] array = {25,15,50,10,22,4,12,18,14,35,70,31,44,66,90};
-        binarySearchTree.insertArray(array);
-        System.out.println(binarySearchTree.find(90));
-    }
-
+    public Node getRoot() { return Root; }
 }

@@ -37,11 +37,26 @@ public class BinarySearchTree {
             insert(i);
     }
 
+    public boolean find(int value){
+        boolean found = false;
+        if(Root ==  null) return found;
+        Node current = Root;
+        while (current != null && !found){
+            if (current.getValue() < value)
+                current = current.getRight();
+            else if (current.getValue() > value)
+                current = current.getLeft();
+            else found = true;
+        }
+        return found;
+    }
+
     //test code
     public static void main(String[] args) {
         BinarySearchTree binarySearchTree = new BinarySearchTree();
         int[] array = {25,15,50,10,22,4,12,18,14,35,70,31,44,66,90};
         binarySearchTree.insertArray(array);
+        System.out.println(binarySearchTree.find(90));
     }
 
 }

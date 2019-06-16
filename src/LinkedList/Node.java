@@ -4,6 +4,11 @@ public class Node {
     private int Value;
     private Node Next;
 
+    public Node(){
+        Value = 0;
+        Next = null;
+    }
+
     public Node(int value) {
         Value = value;
         Next = null;

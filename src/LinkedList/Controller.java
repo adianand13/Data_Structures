@@ -26,22 +26,24 @@ public class Controller {
         }
     }
 
-    public boolean pop() {
+    public Node pop() {
         if (Head == null)
-            return false;
+            return null;
         else if (Head == Tail) {
+            Node temp = Head;
             Head = Tail = null;
             Length = 0;
-            return true;
+            return Head;
         } else {
             Node newTail = Head;
             while (newTail.getNext().hasNext()){
                 newTail = newTail.getNext();
             }
+            Node temp = Tail;
             Tail = newTail;
             Tail.setNext(null);
             Length --;
-            return true;
+            return temp;
         }
     }
 
@@ -63,14 +65,14 @@ public class Controller {
     }
 
     //Shifts head by one node
-    public boolean shift(){
-        if (Head == null) return false;
+    public Node shift(){
+        if (Head == null) return null;
         Head = Head.hasNext() ? Head.getNext() : null;
         Length --;
-        return true;
+        return Head;
     }
 
-    public boolean remove(int index){
+    public Node remove(int index){
         if (index < 0 || index >= Length)
             System.out.println("IndexOutOfBoundsException");
         else if(index == 0)
@@ -81,11 +83,12 @@ public class Controller {
             Node iterator = Head.getNext();
             for (int i = 1; i < index-1; i++)
                 iterator = iterator.getNext();
+            Node temp = iterator.getNext();
             iterator.setNext(iterator.getNext().getNext());
             Length --;
-            return true;
+            return temp;
         }
-        return false;
+        return null;
     }
 
     //Insert a new node to start

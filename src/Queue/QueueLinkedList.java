@@ -1,19 +1,27 @@
 package Queue;
 
 import LinkedList.Controller;
+import LinkedList.Node;
 
 public class QueueLinkedList {
     private Controller Queue = new Controller();
 
     public void enQueue(int value) { Queue.push(value); }
 
-    public void deQueue(){
-        if (Queue.isEmpty()) System.out.println("Queue Empty");
+    public Node deQueue(){
+        if (Queue.isEmpty()) {
+            System.out.println("Queue Empty");
+            return null;
+        }
         else {
             System.out.println(Queue.getHead().getValue());
-            Queue.shift();
+            return  Queue.shift();
         }
     }
+
+    public boolean isEmpty(){ return Queue.isEmpty(); }
+
+    public  int length(){ return  Queue.length(); }
 
     public void reset() {
         Queue = new Controller();
